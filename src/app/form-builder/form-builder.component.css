@@ -1,0 +1,42 @@
+
+.ant-input::placeholder {
+    color: #919eab;
+  }
+  .ant-input-affix-wrapper {
+    height: 32px !important;
+  }
+  .ant-input {
+    color: #212b36;
+    font-size: 14px;
+    background: none;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px !important;
+  }
+  .ant-input::placeholder-shown {
+    font-size: 14 !important;
+  }
+  .ant-input-affix-wrapper-disabled {
+    color: #aab2bf !important;
+    background: #f5f6f7 !important;
+    border: 1px solid #d3d7de !important;
+    
+  }
+  .ant-input-affix-wrapper-disabled::placeholder {
+    color: #aab2bf !important;
+  }
+  nz-select {
+    width: 100%;
+  }
+  .labelStyled {
+    margin-bottom: 4px;
+    color: black;
+   
+  }
+  .requiredStyled {
+    color: red;
+  }
+  .text-danger {
+    color: red;
+  }
+  

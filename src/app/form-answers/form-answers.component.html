@@ -1,0 +1,39 @@
+<nz-layout style="background: #fff">
+  <div
+    nz-row
+    [nzGutter]="[16, 16]"
+    style="padding-top: 16px; padding-bottom: 16px"
+  >
+    <div nz-col class="gutter-row" [nzSpan]="24">
+      <nz-card nzTitle="Please tell us about yourself">
+        <nz-list>
+          <nz-list-item *ngFor="let question of questionArray">
+            <ng-container>
+              <nz-list-item-meta>
+                <nz-list-item-meta-title>
+                    <nz-comment-content>
+                        <p>{{ question.introdue}}</p> 
+                    </nz-comment-content>
+                   
+                </nz-list-item-meta-title>
+                <nz-list-item-meta-description>
+                    <nz-list-item-meta-title>
+                        <p style="color: red;">{{ question.question}} * </p> 
+                       
+                    </nz-list-item-meta-title>
+                    <nz-comment-content *ngFor="let answer of question.answers">
+                        <p>{{ answer.label}}</p> 
+                    </nz-comment-content>
+                </nz-list-item-meta-description>
+              </nz-list-item-meta>
+             
+            </ng-container>
+          </nz-list-item>
+        </nz-list>
+        <button style="float: right;"  nz-button nzSize="large" nzType="text" class="btn-create-order" (click)="onGoHome($event)">
+            <span nz-typography><u>Back to Forms Builder</u></span>
+        </button>
+      </nz-card>
+    </div>
+  </div>
+</nz-layout>

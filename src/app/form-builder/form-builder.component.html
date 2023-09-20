@@ -1,0 +1,42 @@
+<nz-layout style="background:#fff">
+    <div nz-row [nzGutter]="[16, 16]" style="padding-top: 16px; padding-bottom: 16px;">
+        <div nz-col class="gutter-row" [nzSpan]="24">
+            <form nz-form [formGroup]="validateForm">
+                <div nz-col class="gutter-row" [nzSpan]="24">
+                    <div class="labelStyled">Please tell us about yourself *</div>
+                </div>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="24" nzErrorTip="Please input your answers">
+                        <textarea rows="4" formControlName="introduce"  nz-input  [nzAutosize]="{ minRows: 6, maxRows: 6 }"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+                <ng-container  *ngFor="let question of questionArray" >
+                    <div nz-col class="gutter-row" [nzSpan]="24">
+                        <div class="labelStyled">{{ question.question}} *</div>
+                    </div>
+                    <div nz-col nzSpan="24"    *ngFor="let answer of question.answers">
+                        <div nz-col nzSpan="24"><label    nz-checkbox nz-checkbox (change)="onCheckboxChange($event, answer, question)" [nzValue]="answer.value">{{ answer.label }}</label></div>
+                     </div>
+                </ng-container>
+                 <p
+                 class="text-danger"
+                 *ngIf="this.validateForm.controls['checkArray'].errors?.['required'] && isSubmit"
+                 > Checkbox is required, select atleast one value.
+                 </p>
+                
+                <button nz-button nzType="text" (click)="onOpenQuestion($event)"><span nz-typography><u>Add New Question</u></span></button>
+                <button nz-button nzType="default" (click)="submitForm()" style="float: right;">Review my answers ></button>
+
+                
+            </form>
+           
+        </div>
+    </div>
+    <app-modal-add-question
+    (onClose)="onClose($event)"
+    (onOK)="onOK($event)"
+    [isVisible]="isVisible"
+    >
+
+    </app-modal-add-question>
+</nz-layout>

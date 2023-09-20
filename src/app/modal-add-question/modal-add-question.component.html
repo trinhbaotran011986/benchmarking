@@ -1,0 +1,87 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add a New Questions" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Submit" nzMaskClosable="false">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="validateForm">
+            <nz-form-item>
+                <nz-form-control
+                  [nzSpan]="24"
+                  nzErrorTip="Please choose type question"
+                >
+                <nz-select formControlName="typeQuestion"  (ngModelChange)="onChangeTypeQuestion($event)">
+                    <nz-option nzValue="paragraph" nzLabel="Paragraph answer"></nz-option>
+                    <nz-option nzValue="checkbox" nzLabel="Check Box list"></nz-option>
+                </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-control
+                  [nzSpan]="24"
+                  nzErrorTip="Please input your question"
+                >
+                <input nz-input  formControlName="question"  placeholder="Type question here"   />
+                </nz-form-control>
+              </nz-form-item>
+
+              <ng-container *ngIf="validateForm.value['typeQuestion'] === 'checkbox'">
+                <nz-form-item>
+                    <nz-form-control
+                      [nzSpan]="24"
+                      nzErrorTip="Please input your answer"
+                    >
+                    <input nz-input  formControlName="answer01" placeholder="Add Answer Option"  />
+                    </nz-form-control>
+                  </nz-form-item>
+
+                  <nz-form-item>
+                    <nz-form-control
+                      [nzSpan]="24"
+                      nzErrorTip="Please input your answer"
+                    >
+                    <input nz-input  formControlName="answer02" placeholder="Add Answer Option"  />
+                    </nz-form-control>
+                  </nz-form-item>
+              </ng-container>
+             
+
+            <ng-container *ngIf="validateForm.value['typeQuestion'] === 'paragraph'">
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="24" nzErrorTip="Please input your answer">
+                        <textarea rows="4" placeholder="Add Answer paragraph" formControlName="contentParaph"  nz-input  [nzAutosize]="{ minRows: 6, maxRows: 6 }"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </ng-container>
+           
+                <nz-form-item *ngIf="isShowOther">
+                    <nz-form-control [nzSpan]="24" nzErrorTip="Please input your answers">
+                        <input nz-input  formControlName="other" placeholder="Add Answer other"  />
+                    </nz-form-control>
+                </nz-form-item>
+           
+            <button [disabled] = "!isDisableOther" nz-button nzSize="large" nzType="text" class="btn-create-order" (click)="onCreatOther($event)">
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                <span>Add another answer</span>
+            </button>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="24">
+                  <label nz-checkbox formControlName="disableOther" (ngModelChange)="requiredDisable($event)">
+                    Allow user to specify their own answer
+                  </label>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-control [nzSpan]="24">
+                  <label nz-checkbox formControlName="required" (ngModelChange)="requiredChange($event)">
+                    This field is required
+                  </label>
+                </nz-form-control>
+            </nz-form-item>
+
+
+          
+           
+        </form>
+       
+    </ng-container>
+</nz-modal>
